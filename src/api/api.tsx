@@ -3,7 +3,7 @@ import { toast } from "sonner";
 import type { User } from "../types/user";
 
 const api = axios.create({
-    baseURL: "http://localhost:3000",
+    baseURL: import.meta.env.BACKEND_URL,
 });
 
 export const fetchUsers = async () => {
