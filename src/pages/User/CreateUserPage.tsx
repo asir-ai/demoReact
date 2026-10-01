@@ -14,7 +14,7 @@ export default function CreateUserPage() {
     })
 
     const createMutation = useMutation({
-        mutationFn: () => createUser(formData),
+        mutationFn: (userData: typeof formData) => createUser(userData),
         onSuccess: () => {
             toast.success("User created successfully!");
             queryClient.invalidateQueries({ queryKey: ["users"] });

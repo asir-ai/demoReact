@@ -8,7 +8,7 @@ export default function UserDetailPage() {
     const { userId } = useParams<{ userId: string }>();
     const navigate = useNavigate();
     
-    const { data: user, isPending, isError, error } = useQuery<User[]>({
+    const { data: user, isPending, isError, error } = useQuery<User>({
         queryKey: ["user", userId],
         queryFn: () => fetchUserById(userId!),
         enabled: !!userId,
@@ -87,8 +87,8 @@ export default function UserDetailPage() {
                         {user?.name}
                     </div>
                     <div>
-                        <h2 className="text-2xl font-bold text-gray-900">{`${user?.name} ${user?.lastName}`}</h2>
-                        <p className="text-sm text-gray-500">{user?.company?.title || 'Member'}</p>
+                        <h2 className="text-2xl font-bold text-gray-900">{`${user?.name}`}</h2>
+                        <p className="text-sm text-gray-500">{'Member'}</p>
                     </div>
                 </div>
 
@@ -100,14 +100,14 @@ export default function UserDetailPage() {
                     </div>
                     <div>
                         <label className="block text-xs font-semibold text-gray-400 uppercase tracking-wider">Phone Number</label>
-                        <p className="text-gray-700 mt-1 font-medium">{user.phone || 'N/A'}</p>
+                        <p className="text-gray-700 mt-1 font-medium">{'N/A'}</p>
                     </div>
-                    {user.company && (
+                    {/* {user.company && (
                         <div className="md:col-span-2">
                             <label className="block text-xs font-semibold text-gray-400 uppercase tracking-wider">Company</label>
                             <p className="text-gray-700 mt-1 font-medium">{user.company.name}</p>
                         </div>
-                    )}
+                    )} */}
                 </div>
             </div>
         </div>

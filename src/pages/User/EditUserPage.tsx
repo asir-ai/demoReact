@@ -1,6 +1,6 @@
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { useNavigate, useParams } from "react-router-dom";
-import { checkoutUser, editUser, fetchUserById } from "../../api/api";
+import { checkoutUser, fetchUserById } from "../../api/api";
 import { useEffect, useState, type FormEvent } from "react";
 import type { User } from "../../types/user";
 import { toast } from "sonner";
@@ -31,16 +31,16 @@ export default function EditUserPage() {
         }
     }, [user]);
 
-    const editMutation = useMutation({
-        mutationFn: (updatedData: Partial<User>) => editUser(userId!, updatedData),
-        onSuccess: () => {
-            toast.success("User updated successfully!");
-            queryClient.invalidateQueries({ queryKey: ["user"] });
-            queryClient.invalidateQueries({ queryKey: ["user", userId] });
+    // const editMutation = useMutation({
+    //     mutationFn: (updatedData: Partial<User>) => editUser(userId!, updatedData),
+    //     onSuccess: () => {
+    //         toast.success("User updated successfully!");
+    //         queryClient.invalidateQueries({ queryKey: ["user"] });
+    //         queryClient.invalidateQueries({ queryKey: ["user", userId] });
 
-            navigate(`/users/${userId}`);
-        }
-    });
+    //         navigate(`/users/${userId}`);
+    //     }
+    // });
 
     const checkoutMutation = useMutation({
         mutationFn: (updatedData: Partial<User>) => checkoutUser(userId!, updatedData),
